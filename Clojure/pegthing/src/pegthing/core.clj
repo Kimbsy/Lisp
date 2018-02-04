@@ -29,7 +29,7 @@
   (inc (count (take-while #(> pos %) tri))))
 
 (defn connect
-  "form a manual connection between two positions!"
+  "Form a manual connection between two positions"
   [board max-pos pos neighbour destination]
   (if (<= destination max-pos)
     (reduce (fn [new-board [p1 p2]]
@@ -60,3 +60,20 @@
         destination (+ 2 row neighbour)]
     (connect board max-pos pos neighbour destination)))
 
+(defn add-pos
+  "Pegs the position and performs connections"
+  [board max-pos pos]
+  (let [pegged-board (assoc-in board [pos :pegged] true)]
+    (reduce (fn [new-board connection-creation-function]
+              (connection-creation-function new-board max-pos pos))
+            pegged-board
+            [connect-right connect-down-left connect-down-right])))
+
+(defn new-board
+  "Creates a new board with the given number of rows"
+  [rows]
+  (let [initial-board {:rows rows}
+        max-pos (row-tri rows)]
+    (reduce (fn [board pos] (add-pos board max-pos pos))
+            initial-board
+            (range 1 (inc max-pos)))))
