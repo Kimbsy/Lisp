@@ -180,8 +180,7 @@
 
 (defn print-board
   [board]
-  (doseq [row-num (range 1 (inc (:rows board
-)))]
+  (doseq [row-num (range 1 (inc (:rows board)))]
     (println (render-row board row-num))))
 
 ;;; Player interaction
