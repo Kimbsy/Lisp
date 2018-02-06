@@ -180,7 +180,8 @@
 
 (defn print-board
   [board]
-  (doseq [row-num (range 1 (:rows board))]
+  (doseq [row-num (range 1 (inc (:rows board
+)))]
     (println (render-row board row-num))))
 
 ;;; Player interaction
@@ -208,7 +209,9 @@
   "Handles the next step after the user has entered an invalid move"
   [board]
   (println "\n!!! That was an invalid move:\n")
-  (prompt-move board))
+  (if (can-move? board)
+    (prompt-move board)
+    (game-over board)))
 
 (defn user-entered-valid-move
   "Handles the nest step after the user has entered a valid move"
