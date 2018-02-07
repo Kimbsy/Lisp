@@ -233,8 +233,8 @@
   [board]
   (println "Here's your board:")
   (print-board board)
-  (println "Remove which peg? [e]")
-  (prompt-move (remove-peg board (letter->pos (get-input "e")))))
+  (println "Remove which peg? [a]")
+  (prompt-move (remove-peg board (letter->pos (get-input "a")))))
 
 (defn prompt-rows
   []
@@ -256,4 +256,8 @@
         (do
           (println "Bye!")
           (System/exit 0))))))
+
+(defn -main
+  []
+  (prompt-rows))
 
