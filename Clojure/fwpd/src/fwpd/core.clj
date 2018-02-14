@@ -1,4 +1,4 @@
-(ns fwpd.core)
+qq(ns fwpd.core)
 (def filename "suspects.csv")
 
 (def vamp-keys [:name :glitter-index])
