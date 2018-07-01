@@ -25,7 +25,7 @@
     :bear
     :criminal))
 
-(defn run [_]
+(defn run []
   (loop [stats starting-stats
          i 0]
     (if (has-zero? stats)
